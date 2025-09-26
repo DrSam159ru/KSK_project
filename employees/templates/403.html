@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Ошибка 403{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-8 text-center">
+  <h2 class="text-3xl font-bold text-red-600 mb-4">
+    🔒 Ошибка 403
+  </h2>
+  <p class="text-gray-600 mb-6">
+    У вас нет прав для доступа к этой странице.
+  </p>
+  <a href="{% url 'index' %}"
+     class="inline-block bg-gray-800 text-white px-5 py-2 rounded-md shadow hover:bg-gray-900 transition">
+    ⬅️ На главную
+  </a>
+</div>
+{% endblock %}

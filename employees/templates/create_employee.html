@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Создание сотрудника{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-green-50 shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+        Новый сотрудник
+    </h2>
+
+    <!-- ✅ Вывод сообщений -->
+    {% if messages %}
+      <div class="space-y-2 mb-4">
+        {% for message in messages %}
+          <div class="px-4 py-2 rounded-md text-sm font-medium
+                      {% if message.tags == 'success' %}
+                        bg-green-100 text-green-800
+                      {% elif message.tags == 'error' %}
+                        bg-red-100 text-red-800
+                      {% else %}
+                        bg-gray-100 text-gray-800
+                      {% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+
+        <!-- Рендеринг полей формы -->
+        <div class="space-y-3 as-p">
+          {{ form.as_p }}
+        </div>
+
+        <!-- Кнопки -->
+        <div class="flex justify-center gap-3">
+            <button type="submit"
+                    class="bg-green-600 text-white px-5 py-2 rounded-md shadow hover:bg-green-700 transition">
+                ✅ Создать
+            </button>
+            <a href="{% url 'search_employee' %}"
+               class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md shadow hover:bg-gray-300 transition">
+                ❌ Отмена
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

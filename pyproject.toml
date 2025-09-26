@@ -1,0 +1,25 @@
+[tool.black]
+line-length = 79
+target-version = ['py312']
+skip-string-normalization = true   # Black не будет менять кавычки
+
+[tool.isort]
+profile = "black"
+line_length = 79
+force_alphabetical_sort = true
+combine_as_imports = true
+include_trailing_comma = true
+multi_line_output = 3
+
+[tool.ruff]
+line-length = 79
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "Q"]  # E,F - базовые ошибки, Q - кавычки
+ignore = []
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"     # строки — только одинарные
+multiline-quotes = "double"  # многострочные строки — двойные
+docstring-quotes = "double"  # докстринги — двойные (PEP-257)

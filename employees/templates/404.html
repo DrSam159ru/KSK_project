@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-8 text-center">
+  <h2 class="text-3xl font-bold text-yellow-500 mb-4">
+    ⚠️ Ошибка 404
+  </h2>
+  <p class="text-gray-600 mb-6">
+    К сожалению, страница не найдена.
+  </p>
+  <a href="{% url 'index' %}"
+     class="inline-block bg-gray-800 text-white px-5 py-2 rounded-md shadow hover:bg-gray-900 transition">
+    ⬅️ На главную
+  </a>
+</div>
+{% endblock %}

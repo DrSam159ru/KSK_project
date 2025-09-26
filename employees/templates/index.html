@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto">
+  <!-- Заголовок -->
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-3">
+      Система управления сотрудниками KSK
+    </h1>
+    <p class="text-gray-600 text-lg">
+      Добро пожаловать,
+      {% if user.first_name or user.last_name %}
+        {{ user.first_name }} {{ user.last_name }}
+      {% else %}
+        {{ user.username }}
+      {% endif %}!
+    </p>
+  </div>
+
+  <!-- Карточки действий -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {% if user.is_authenticated %}
+
+      {% if user.is_admin or user.is_manager %}
+        <!-- Создать сотрудника -->
+        <a href="{% url 'create_employee' %}"
+           class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center hover:shadow-lg transition">
+          <div class="text-indigo-600 text-4xl mb-3">➕</div>
+          <h2 class="text-xl font-semibold">Создать сотрудника</h2>
+          <p class="text-gray-500 text-center mt-2">
+            Добавьте нового сотрудника в систему
+          </p>
+        </a>
+      {% endif %}
+
+      <!-- Поиск -->
+      <a href="{% url 'search_employee' %}"
+         class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center hover:shadow-lg transition">
+        <div class="text-green-600 text-4xl mb-3">🔍</div>
+        <h2 class="text-xl font-semibold">Поиск</h2>
+        <p class="text-gray-500 text-center mt-2">
+          Найдите сотрудника по данным
+        </p>
+      </a>
+
+      <!-- По регионам -->
+      <a href="{% url 'employees_by_region' %}"
+         class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center hover:shadow-lg transition">
+        <div class="text-blue-600 text-4xl mb-3">🌍</div>
+        <h2 class="text-xl font-semibold">По регионам</h2>
+        <p class="text-gray-500 text-center mt-2">
+          Просмотр сотрудников по регионам
+        </p>
+      </a>
+    {% endif %}
+
+    <!-- Справка (всегда доступна) -->
+    <a href="{% url 'help' %}"
+       class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center hover:shadow-lg transition">
+      <div class="text-yellow-500 text-4xl mb-3">ℹ️</div>
+      <h2 class="text-xl font-semibold">Справка</h2>
+      <p class="text-gray-500 text-center mt-2">
+        Ознакомьтесь с документацией и инструкциями!
+      </p>
+    </a>
+  </div>
+</div>
+{% endblock %}

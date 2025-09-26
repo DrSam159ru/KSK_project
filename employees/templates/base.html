@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}KSK{% endblock %}</title>
+
+    <!-- Tailwind -->
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+<!-- Навбар -->
+<nav class="bg-gray-900 fixed w-full top-0 z-50 shadow-md">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Логотип -->
+      <a href="{% url 'index' %}" class="text-white text-xl font-bold">KSK</a>
+
+      <!-- Кнопка для мобилы -->
+      <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
+        ☰
+      </button>
+
+      <!-- Ссылки -->
+      <div id="menu" class="hidden lg:flex space-x-2 items-center">
+        {% if user.is_authenticated %}
+          <!-- Главная -->
+          <a href="{% url 'index' %}"
+             class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+            Главная
+          </a>
+
+          <!-- Админ -->
+          {% if user.is_admin %}
+            <a href="/admin/"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Админ-панель
+            </a>
+          {% endif %}
+
+          <!-- Админ и менеджер -->
+          {% if user.is_admin or user.is_manager %}
+            <a href="{% url 'create_employee' %}"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Новый сотрудник
+            </a>
+            <a href="{% url 'search_employee' %}"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Поиск по базе
+            </a>
+            <a href="{% url 'employees_by_region' %}"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Сотрудники регионов
+            </a>
+          {% elif user.is_viewer %}
+            <!-- Viewer -->
+            <a href="{% url 'search_employee' %}"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Поиск по базе
+            </a>
+            <a href="{% url 'employees_by_region' %}"
+               class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+              Сотрудники регионов
+            </a>
+          {% endif %}
+        {% endif %}
+
+        <!-- Справка (для всех) -->
+        <a href="{% url 'help' %}"
+           class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">
+          Справка
+        </a>
+      </div>
+
+      <!-- Профиль / вход -->
+      <div class="hidden lg:flex items-center space-x-3">
+        {% if user.is_authenticated %}
+          <span class="text-gray-300 text-sm">
+            👤 Привет,
+            {% if user.first_name or user.last_name %}
+              {{ user.first_name }} {{ user.last_name }}
+            {% else %}
+              {{ user.username }}
+            {% endif %}
+            ({{ user.role }})
+          </span>
+          <a href="{% url 'logout' %}"
+             class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-red-600">
+            Выход
+          </a>
+        {% else %}
+          <a href="{% url 'login' %}"
+             class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-green-600">
+            Вход
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Контент -->
+<main class="container mx-auto px-4 pt-20 flex-1">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Футер -->
+<footer class="bg-gray-900 text-gray-400 text-center py-4 mt-10">
+  © {{ now|date:"Y" }} KSK. Все права защищены. Москва - 2025
+</footer>
+
+<!-- JS для мобильного меню -->
+<script>
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>

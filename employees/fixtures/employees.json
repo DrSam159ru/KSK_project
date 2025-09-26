@@ -1,0 +1,244 @@
+[
+  { "model": "employees.employee", "pk": 1, "fields": {
+    "last_name": "Иванов", "first_name": "Пётр", "patronymic": "Сергеевич",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-10", "note_number": "M-101",
+    "login": "01_Иванов_ПС", "password": "pass001",
+    "action": "create", "status": "active",
+    "created_at": "2025-01-10T09:00:00Z"
+  }},
+  { "model": "employees.employee", "pk": 2, "fields": {
+    "last_name": "Смирнов", "first_name": "Андрей", "patronymic": "Николаевич",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-12", "note_number": "M-102",
+    "login": "01_Смирнов_АН", "password": "pass002",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-01-12T14:00:00Z"
+  }},
+  { "model": "employees.employee", "pk": 3, "fields": {
+    "last_name": "Петрова", "first_name": "Елена", "patronymic": "Алексеевна",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-15", "note_number": "M-103",
+    "login": "01_Петрова_ЕА", "password": "pass003",
+    "action": "create", "status": "active",
+    "created_at": "2025-01-15T11:20:00Z"
+  }},
+  { "model": "employees.employee", "pk": 4, "fields": {
+    "last_name": "Соколова", "first_name": "Мария", "patronymic": "Ивановна",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-18", "note_number": "M-104",
+    "login": "01_Соколова_МИ", "password": "pass004",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-01-18T16:45:00Z"
+  }},
+  { "model": "employees.employee", "pk": 5, "fields": {
+    "last_name": "Морозов", "first_name": "Игорь", "patronymic": "Владимирович",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-20", "note_number": "M-105",
+    "login": "01_Морозов_ИВ", "password": "pass005",
+    "action": "create", "status": "active",
+    "created_at": "2025-01-20T10:15:00Z"
+  }},
+  { "model": "employees.employee", "pk": 6, "fields": {
+    "last_name": "Алексеев", "first_name": "Олег", "patronymic": "Павлович",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-22", "note_number": "M-106",
+    "login": "01_Алексеев_ОП", "password": "pass006",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-01-22T15:40:00Z"
+  }},
+  { "model": "employees.employee", "pk": 7, "fields": {
+    "last_name": "Мельников", "first_name": "Кирилл", "patronymic": "Геннадьевич",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-24", "note_number": "M-107",
+    "login": "01_Мельников_КГ", "password": "pass007",
+    "action": "create", "status": "active",
+    "created_at": "2025-01-24T08:30:00Z"
+  }},
+  { "model": "employees.employee", "pk": 8, "fields": {
+    "last_name": "Егорова", "first_name": "Алина", "patronymic": "Владимировна",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-25", "note_number": "M-108",
+    "login": "01_Егорова_АВ", "password": "pass008",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-01-25T17:50:00Z"
+  }},
+  { "model": "employees.employee", "pk": 9, "fields": {
+    "last_name": "Козлов", "first_name": "Даниил", "patronymic": "Романович",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-27", "note_number": "M-109",
+    "login": "01_Козлов_ДР", "password": "pass009",
+    "action": "create", "status": "active",
+    "created_at": "2025-01-27T12:25:00Z"
+  }},
+  { "model": "employees.employee", "pk": 10, "fields": {
+    "last_name": "Зайцева", "first_name": "Оксана", "patronymic": "Юрьевна",
+    "region_name": 1, "region_code": 1,
+    "note_date": "2025-01-28", "note_number": "M-110",
+    "login": "01_Зайцева_ОЮ", "password": "pass010",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-01-28T13:10:00Z"
+  }},
+
+  { "model": "employees.employee", "pk": 11, "fields": {
+    "last_name": "Кузнецов", "first_name": "Виктор", "patronymic": "Олегович",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-01", "note_number": "P-201",
+    "login": "02_Кузнецов_ВО", "password": "pass011",
+    "action": "create", "status": "active",
+    "created_at": "2025-02-01T09:30:00Z"
+  }},
+  { "model": "employees.employee", "pk": 12, "fields": {
+    "last_name": "Новикова", "first_name": "Анна", "patronymic": "Павловна",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-03", "note_number": "P-202",
+    "login": "02_Новикова_АП", "password": "pass012",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-02-03T13:50:00Z"
+  }},
+  { "model": "employees.employee", "pk": 13, "fields": {
+    "last_name": "Попов", "first_name": "Дмитрий", "patronymic": "Сергеевич",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-05", "note_number": "P-203",
+    "login": "02_Попов_ДС", "password": "pass013",
+    "action": "create", "status": "active",
+    "created_at": "2025-02-05T12:00:00Z"
+  }},
+  { "model": "employees.employee", "pk": 14, "fields": {
+    "last_name": "Васильева", "first_name": "Ольга", "patronymic": "Викторовна",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-06", "note_number": "P-204",
+    "login": "02_Васильева_ОВ", "password": "pass014",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-02-06T18:20:00Z"
+  }},
+  { "model": "employees.employee", "pk": 15, "fields": {
+    "last_name": "Захаров", "first_name": "Максим", "patronymic": "Ильич",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-07", "note_number": "P-205",
+    "login": "02_Захаров_МИ", "password": "pass015",
+    "action": "create", "status": "active",
+    "created_at": "2025-02-07T08:10:00Z"
+  }},
+  { "model": "employees.employee", "pk": 16, "fields": {
+    "last_name": "Григорьев", "first_name": "Николай", "patronymic": "Степанович",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-08", "note_number": "P-206",
+    "login": "02_Григорьев_НС", "password": "pass016",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-02-08T15:00:00Z"
+  }},
+  { "model": "employees.employee", "pk": 17, "fields": {
+    "last_name": "Михайлова", "first_name": "Екатерина", "patronymic": "Игоревна",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-10", "note_number": "P-207",
+    "login": "02_Михайлова_ЕИ", "password": "pass017",
+    "action": "create", "status": "active",
+    "created_at": "2025-02-10T09:45:00Z"
+  }},
+  { "model": "employees.employee", "pk": 18, "fields": {
+    "last_name": "Тихонов", "first_name": "Владимир", "patronymic": "Евгеньевич",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-12", "note_number": "P-208",
+    "login": "02_Тихонов_ВЕ", "password": "pass018",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-02-12T14:35:00Z"
+  }},
+  { "model": "employees.employee", "pk": 19, "fields": {
+    "last_name": "Белова", "first_name": "Марина", "patronymic": "Александровна",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-14", "note_number": "P-209",
+    "login": "02_Белова_МА", "password": "pass019",
+    "action": "create", "status": "active",
+    "created_at": "2025-02-14T16:25:00Z"
+  }},
+  { "model": "employees.employee", "pk": 20, "fields": {
+    "last_name": "Громов", "first_name": "Степан", "patronymic": "Олегович",
+    "region_name": 2, "region_code": 2,
+    "note_date": "2025-02-15", "note_number": "P-210",
+    "login": "02_Громов_СО", "password": "pass020",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-02-15T11:55:00Z"
+  }},
+
+  { "model": "employees.employee", "pk": 21, "fields": {
+    "last_name": "Фёдоров", "first_name": "Алексей", "patronymic": "Петрович",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-01", "note_number": "SP-301",
+    "login": "03_Фёдоров_АП", "password": "pass021",
+    "action": "create", "status": "active",
+    "created_at": "2025-03-01T09:40:00Z"
+  }},
+  { "model": "employees.employee", "pk": 22, "fields": {
+    "last_name": "Алексеева", "first_name": "Юлия", "patronymic": "Дмитриевна",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-02", "note_number": "SP-302",
+    "login": "03_Алексеева_ЮД", "password": "pass022",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-03-02T15:25:00Z"
+  }},
+  { "model": "employees.employee", "pk": 23, "fields": {
+    "last_name": "Орлов", "first_name": "Сергей", "patronymic": "Александрович",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-05", "note_number": "SP-303",
+    "login": "03_Орлов_СА", "password": "pass023",
+    "action": "create", "status": "active",
+    "created_at": "2025-03-05T17:10:00Z"
+  }},
+  { "model": "employees.employee", "pk": 24, "fields": {
+    "last_name": "Макарова", "first_name": "Ирина", "patronymic": "Васильевна",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-07", "note_number": "SP-304",
+    "login": "03_Макарова_ИВ", "password": "pass024",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-03-07T11:00:00Z"
+  }},
+  { "model": "employees.employee", "pk": 25, "fields": {
+    "last_name": "Никитин", "first_name": "Артём", "patronymic": "Геннадьевич",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-09", "note_number": "SP-305",
+    "login": "03_Никитин_АГ", "password": "pass025",
+    "action": "create", "status": "active",
+    "created_at": "2025-03-09T10:05:00Z"
+  }},
+  { "model": "employees.employee", "pk": 26, "fields": {
+    "last_name": "Дорофеева", "first_name": "Светлана", "patronymic": "Юрьевна",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-10", "note_number": "SP-306",
+    "login": "03_Дорофеева_СЮ", "password": "pass026",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-03-10T12:20:00Z"
+  }},
+  { "model": "employees.employee", "pk": 27, "fields": {
+    "last_name": "Гусев", "first_name": "Михаил", "patronymic": "Андреевич",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-12", "note_number": "SP-307",
+    "login": "03_Гусев_МА", "password": "pass027",
+    "action": "create", "status": "active",
+    "created_at": "2025-03-12T16:45:00Z"
+  }},
+  { "model": "employees.employee", "pk": 28, "fields": {
+    "last_name": "Киселёва", "first_name": "Татьяна", "patronymic": "Петровна",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-14", "note_number": "SP-308",
+    "login": "03_Киселёва_ТП", "password": "pass028",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-03-14T09:35:00Z"
+  }},
+  { "model": "employees.employee", "pk": 29, "fields": {
+    "last_name": "Романов", "first_name": "Илья", "patronymic": "Сергеевич",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-16", "note_number": "SP-309",
+    "login": "03_Романов_ИС", "password": "pass029",
+    "action": "create", "status": "active",
+    "created_at": "2025-03-16T14:15:00Z"
+  }},
+  { "model": "employees.employee", "pk": 30, "fields": {
+    "last_name": "Волкова", "first_name": "Александра", "patronymic": "Денисовна",
+    "region_name": 3, "region_code": 3,
+    "note_date": "2025-03-18", "note_number": "SP-310",
+    "login": "03_Волкова_АД", "password": "pass030",
+    "action": "create", "status": "blocked",
+    "created_at": "2025-03-18T18:05:00Z"
+  }}
+]

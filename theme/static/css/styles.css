@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Стили для форм, отрендеренных через form.as_p */
+@layer components {
+  .as-p p { @apply flex flex-col items-center sm:items-stretch mb-3; }
+  .as-p label { @apply block text-sm font-medium text-gray-700 mb-1 text-center sm:text-left; }
+  .as-p input,
+  .as-p select,
+  .as-p textarea { @apply w-full border rounded-md px-3 py-2 shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500; }
+}
+
+@layer components {
+  .as-p p { @apply flex flex-col mb-3; }
+  .as-p label { @apply block text-sm font-medium text-gray-700 mb-1; }
+  .as-p input,
+  .as-p select,
+  .as-p textarea {
+    @apply w-full border rounded-md px-3 py-2 shadow-sm focus:ring focus:ring-green-200 focus:border-green-500;
+  }
+}
+
+select {
+  @apply w-full border rounded-md px-3 py-2 shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500;
+}

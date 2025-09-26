@@ -1,0 +1,22 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "TailwindCSS setup for Django theme app",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./static/css/styles.css -o ./static/css/dist/styles.css --watch"
+  },
+  "keywords": [
+    "django",
+    "tailwindcss",
+    "postcss"
+  ],
+  "author": "andrey",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.17"
+  }
+}

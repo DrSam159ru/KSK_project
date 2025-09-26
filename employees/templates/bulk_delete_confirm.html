@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Подтверждение удаления{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 text-center">
+  <h2 class="text-2xl font-bold text-red-600 mb-4">
+    Подтверждение удаления
+  </h2>
+  <p class="mb-4">Вы уверены, что хотите удалить выбранных сотрудников?</p>
+
+  <ul class="mb-6 text-left list-disc list-inside">
+    {% for emp in employees %}
+      <li>{{ emp.last_name }} {{ emp.first_name }} ({{ emp.login }})</li>
+    {% endfor %}
+  </ul>
+
+  <form method="post">
+    {% csrf_token %}
+    {% for emp in employees %}
+      <input type="hidden" name="selected" value="{{ emp.pk }}">
+    {% endfor %}
+    <input type="hidden" name="prev_url" value="{{ prev_url }}">
+    <button type="submit" name="confirm" value="yes"
+            class="bg-red-600 text-white px-5 py-2 rounded-md shadow hover:bg-red-700 transition">
+      🗑️ Удалить
+    </button>
+    <a href="{{ prev_url }}"
+       class="bg-gray-300 text-gray-800 px-5 py-2 rounded-md shadow hover:bg-gray-400 transition">
+      Отмена
+    </a>
+  </form>
+</div>
+{% endblock %}
