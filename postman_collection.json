@@ -1,11 +1,13 @@
 {
   "info": {
     "name": "KSK API",
+    "_postman_id": "ksk-api-collection-2025",
+    "description": "Postman коллекция для тестирования API проекта KSK",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Получить токен",
+      "name": "🔑 Auth - Получение токена",
       "request": {
         "method": "POST",
         "header": [
@@ -13,7 +15,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin123\"\n}"
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"adminpassword\"\n}"
         },
         "url": {
           "raw": "http://127.0.0.1:8000/api/token/",
@@ -25,20 +27,235 @@
       }
     },
     {
-      "name": "Список сотрудников",
-      "request": {
-        "method": "GET",
-        "header": [
-          { "key": "Authorization", "value": "Bearer {{access_token}}" }
-        ],
-        "url": {
-          "raw": "http://127.0.0.1:8000/api/employees/",
-          "protocol": "http",
-          "host": ["127.0.0.1"],
-          "port": "8000",
-          "path": ["api", "employees", ""]
+      "name": "👥 Employees",
+      "item": [
+        {
+          "name": "GET - Список сотрудников",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/employees/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "employees", ""]
+            }
+          }
+        },
+        {
+          "name": "POST - Создать сотрудника",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"last_name\": \"Петров\",\n  \"first_name\": \"Петр\",\n  \"patronymic\": \"Петрович\",\n  \"region_name\": 1,\n  \"region_code\": 1,\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/employees/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "employees", ""]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Обновить сотрудника",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"blocked\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/employees/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "employees", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Удалить сотрудника",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/employees/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "employees", "1", ""]
+            }
+          }
         }
-      }
+      ]
+    },
+    {
+      "name": "🌍 Regions",
+      "item": [
+        {
+          "name": "GET - Список регионов",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/regions/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "regions", ""]
+            }
+          }
+        },
+        {
+          "name": "POST - Создать регион",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"77\",\n  \"name\": \"Москва\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/regions/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "regions", ""]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Обновить регион",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Санкт-Петербург\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/regions/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "regions", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Удалить регион",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/regions/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "regions", "1", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔐 Password Policies",
+      "item": [
+        {
+          "name": "GET - Список политик",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/password-policies/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "password-policies", ""]
+            }
+          }
+        },
+        {
+          "name": "POST - Создать политику",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uppercase\": 1,\n  \"lowercase\": 1,\n  \"digits\": 1,\n  \"symbols\": 1,\n  \"allowed_symbols\": \"!@#$%^&*\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/password-policies/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "password-policies", ""]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Обновить политику",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{access_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"digits\": 2\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/password-policies/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "password-policies", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Удалить политику",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/password-policies/1/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["api", "v1", "password-policies", "1", ""]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "access_token",
+      "value": ""
     }
   ]
 }

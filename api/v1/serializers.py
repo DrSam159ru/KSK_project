@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from employees.models import Employee, Region
+
+from employees.models import Employee, Region, PasswordPolicy
 
 
 class RegionSerializer(serializers.ModelSerializer):
@@ -7,22 +8,49 @@ class RegionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Region
-        fields = ['id', 'name']
+        fields = ["id", "code", "name"]
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Employee с поддержкой связанного region."""
+class PasswordPolicySerializer(serializers.ModelSerializer):
+    """Сериализатор для модели PasswordPolicy."""
 
-    region = RegionSerializer(read_only=True)
-    region_id = serializers.PrimaryKeyRelatedField(
-        queryset=Region.objects.all(),
-        source='region',
-        write_only=True
-    )
+    class Meta:
+        model = PasswordPolicy
+        fields = "__all__"
+
+
+class EmployeeReadSerializer(serializers.ModelSerializer):
+    """Сериализатор для чтения сотрудников (с вложенными регионами)."""
+
+    region_name = RegionSerializer(read_only=True)
+    region_code = RegionSerializer(read_only=True)
 
     class Meta:
         model = Employee
         fields = [
-            'id', 'first_name', 'last_name', 'position',
-            'region', 'region_id', 'hire_date'
+            "id",
+            "last_name",
+            "first_name",
+            "patronymic",
+            "region_name",
+            "region_code",
+            "status",
+            "created_at",
+            "updated_at",
+        ]
+
+
+class EmployeeWriteSerializer(serializers.ModelSerializer):
+    """Сериализатор для записи сотрудников (через id регионов)."""
+
+    class Meta:
+        model = Employee
+        fields = [
+            "id",
+            "last_name",
+            "first_name",
+            "patronymic",
+            "region_name",
+            "region_code",
+            "status",
         ]

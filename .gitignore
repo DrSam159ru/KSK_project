@@ -1,0 +1,36 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# --- Django ---
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+.env
+
+# --- Virtual environment ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- VS Code ---
+.vscode/
+
+# --- PyCharm ---
+.idea/
+
+# --- MacOS ---
+.DS_Store
+
+# --- Coverage / testing ---
+.coverage
+htmlcov/
+.tox/
+pytest_cache/

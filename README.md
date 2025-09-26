@@ -64,66 +64,221 @@ python manage.py runserver
 
 Сайт откроется по адресу: http://127.0.0.1:8000
 
-# Авторизация и роли пользователей
+# Роли пользователей
 
-## Администратор:
+## Admin
+Имеет полный доступ ко всем разделам и API.
 
-управляет всеми пользователями и паролями,
-доступ к админ-панели (/admin/),
-может редактировать логины и пароли сотрудников.
+## Manager
+Может управлять сотрудниками (создавать, редактировать, блокировать).
 
-## Персонал:
+## Viewer
+Может только просматривать данные.
 
-доступ к интерфейсу поиска и редактирования,
-может управлять сотрудниками.
+# Аутентификация
 
-## Обычный пользователь:
+Используется JWT через djangorestframework-simplejwt.
 
-доступен только просмотр.
-
-# Экспорт сотрудников
-
-В разделе поиска доступна кнопка Экспорт Excel.
-Файл будет скачан с именем employees.xlsx.
-
-# REST API через POSTMAN
-### (в данный момент в процессе разработки...)
-
-## Авторизация через JWT
-### Получение токена:
+## Получение токена:
 
 POST /api/token/
 {
-  "username": "admin",
-  "password": "admin123"
+  "username": "user",
+  "password": "password"
 }
 
-### Обновление токена:
+## Обновление токена:
 
 POST /api/token/refresh/
-{
-  "refresh": "..."
-}
 
-### Проверка токена:
+## Проверка токена:
 
 POST /api/token/verify/
+
+# API эндпоинты
+
+## Сотрудники
+
+GET /api/v1/employees/ — список сотрудников
+
+POST /api/v1/employees/ — создать сотрудника
+
+GET /api/v1/employees/{id}/ — детали сотрудника
+
+PUT/PATCH /api/v1/employees/{id}/ — обновить сотрудника
+
+DELETE /api/v1/employees/{id}/ — удалить сотрудника
+
+Фильтры: status, region_name, region_code
+Поиск: last_name, first_name, patronymic
+Сортировка: last_name, first_name, created_at
+
+## Регионы
+
+GET /api/v1/regions/ — список регионов
+
+POST /api/v1/regions/ — создать регион
+
+GET /api/v1/regions/{id}/ — детали региона
+
+PUT/PATCH /api/v1/regions/{id}/ — обновить регион
+
+DELETE /api/v1/regions/{id}/ — удалить регион
+
+## Политика паролей
+
+GET /api/v1/password-policies/ — список правил
+
+POST /api/v1/password-policies/ — создать правило
+
+GET /api/v1/password-policies/{id}/ — детали правила
+
+PUT/PATCH /api/v1/password-policies/{id}/ — обновить правило
+
+DELETE /api/v1/password-policies/{id}/ — удалить правило
+
+
+# Примеры запросов и ответов API
+
+## Аутентификация (JWT)
+
+### Запрос
+POST /api/token/
+Content-Type: application/json
+
 {
-  "token": "..."
+  "username": "admin",
+  "password": "adminpassword"
 }
 
-## Эндпоинты API
+### Ответ
+{
+  "refresh": "eyJ0eXAiOiJKV1QiLCJh...long_token...",
+  "access": "eyJ0eXAiOiJKV1QiLCJh...short_token..."
+}
 
-Метод       URL     Описание
-GET	/api/employees/	список сотрудников
-POST	/api/employees/	создание сотрудника
-GET	/api/employees/{id}/	просмотр сотрудника
-PUT	/api/employees/{id}/	обновление сотрудника
-DELETE	/api/employees/{id}/	удаление сотрудника
-GET	/api/regions/	список регионов
-GET	/api/regions/{id}/	просмотр региона
+## Сотрудники
 
-## Технологии
+### Получить список сотрудников
+GET /api/v1/employees/?status=active&ordering=last_name
+Authorization: Bearer <access_token>
+
+### Ответ
+[
+  {
+    "id": 1,
+    "last_name": "Иванов",
+    "first_name": "Иван",
+    "patronymic": "Иванович",
+    "region_name": {
+      "id": 1,
+      "code": "77",
+      "name": "Москва"
+    },
+    "region_code": {
+      "id": 1,
+      "code": "77",
+      "name": "Москва"
+    },
+    "status": "active",
+    "created_at": "2025-09-26T12:45:30Z",
+    "updated_at": "2025-09-26T12:45:30Z"
+  }
+]
+
+### Создать сотрудника
+POST /api/v1/employees/
+Content-Type: application/json
+Authorization: Bearer <access_token>
+
+{
+  "last_name": "Петров",
+  "first_name": "Петр",
+  "patronymic": "Петрович",
+  "region_name": 1,
+  "region_code": 1,
+  "status": "active"
+}
+
+### Ответ
+{
+  "id": 2,
+  "last_name": "Петров",
+  "first_name": "Петр",
+  "patronymic": "Петрович",
+  "region_name": 1,
+  "region_code": 1,
+  "status": "active"
+}
+
+## Регионы
+### Получить список регионов
+GET /api/v1/regions/?ordering=code
+Authorization: Bearer <access_token>
+
+### Ответ
+[
+  {
+    "id": 1,
+    "code": "77",
+    "name": "Москва"
+  },
+  {
+    "id": 2,
+    "code": "78",
+    "name": "Санкт-Петербург"
+  }
+]
+
+## Политика паролей
+### Создать правило
+POST /api/v1/password-policies/
+Content-Type: application/json
+Authorization: Bearer <access_token>
+
+{
+  "uppercase": 1,
+  "lowercase": 1,
+  "digits": 1,
+  "symbols": 1,
+  "allowed_symbols": "!@#$%^&*"
+}
+
+### Ответ
+{
+  "id": 1,
+  "uppercase": 1,
+  "lowercase": 1,
+  "digits": 1,
+  "symbols": 1,
+  "allowed_symbols": "!@#$%^&*"
+}
+
+# Postman-коллекция для тестирования API:
+## В коллекции у каждого ресурса (employees, regions, password-policies) есть полный набор:
+
+GET (list),
+POST (create),
+PATCH (update),
+DELETE (delete).
+
+В Authorization используется Bearer 
+{{access_token}}, переменная задаётся один раз.
+
+### Можно:
+
+Импортировать коллекцию в Postman → File → Import → выбрать postman_collection.json.
+
+Сначала выполнить запрос Auth → Получение токена, скопировать access.
+
+В переменной {{access_token}} прописать этот токен (можно в разделе Collection Variables).
+
+Тестировать все эндпоинты:
+- employees (CRUD),
+- regions (CRUD),
+- password-policies (CRUD).
+
+# Технологии:
 
 Python 3.10+
 Django 5
@@ -132,92 +287,11 @@ SimpleJWT
 Bootstrap 5 (шаблоны)
 openpyxl (экспорт Excel)
 
-## Логгирование
+# Логгирование:
 
 Все действия сотрудников фиксируются в таблице ActionLog.
 История входов хранится в LoginHistory.
 Просмотр доступен в админ-панели.
-
-
-# Примеры запросов для REST API
-### (в данный момент в процессе разработки...)
-
-### Получение токена
-
-curl -X POST http://127.0.0.1:8000/api/token/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin123"}'
-
-Пример ответа:
-
-{
-  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOi...",
-  "access": "eyJ0eXAiOiJKV1QiLCJhbGciOi..."
-}
-
-### Обновление токена
-
-curl -X POST http://127.0.0.1:8000/api/token/refresh/ \
-  -H "Content-Type: application/json" \
-  -d '{"refresh": "your_refresh_token"}'
-
-### Проверка токена
-
-curl -X POST http://127.0.0.1:8000/api/token/verify/ \
-  -H "Content-Type: application/json" \
-  -d '{"token": "your_access_token"}'
-
-## Работа с сотрудниками
-
-### Получение списка сотрудников
-
-curl -X GET http://127.0.0.1:8000/api/employees/ \
-  -H "Authorization: Bearer your_access_token"
-
-### Создание сотрудника
-
-curl -X POST http://127.0.0.1:8000/api/employees/ \
-  -H "Authorization: Bearer your_access_token" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "last_name": "Иванов",
-    "first_name": "Иван",
-    "patronymic": "Иванович",
-    "region_name": 23,
-    "region_code": 23,
-    "note_date": "2025-09-21",
-    "note_number": "123",
-    "action": "create"
-  }'
-
-### Обновление сотрудника
-
-curl -X PUT http://127.0.0.1:8000/api/employees/1/ \
-  -H "Authorization: Bearer your_access_token" \
-  -H "Content-Type: application/json" \
-  -d '{"last_name": "Петров"}'
-
-### Удаление сотрудника
-
-curl -X DELETE http://127.0.0.1:8000/api/employees/1/ \
-  -H "Authorization: Bearer your_access_token"
-
-## Работа с регионами
-
-### Получить список регионов
-
-curl -X GET http://127.0.0.1:8000/api/regions/ \
-  -H "Authorization: Bearer your_access_token"
-
-### Просмотр конкретного региона
-
-curl -X GET http://127.0.0.1:8000/api/regions/23/ \
-  -H "Authorization: Bearer your_access_token"
- 
-# Postman коллекция
-
-Для удобства можно использовать Postman.
-Создан файл postman_collection.json, импортируй его в Postman.
 
 # Контакты:
 
